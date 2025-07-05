@@ -81,6 +81,7 @@ function displayNext(forecast) {
 				</div>
 				<div class="degree">${forecast[i].day.maxtemp_c}<sup>o</sup>C</div>
 				<small>${forecast[i].day.mintemp_c}<sup>o</sup></small>
+				<div style="color: #009ad8;">${forecast[i].day.condition.text}</div>
 			</div>
 		</div>
 		`;
