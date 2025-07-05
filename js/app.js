@@ -1,3 +1,19 @@
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				fetchData(position.coords.latitude + ',' + position.coords.longitude);
+			},
+			(error) => {
+				fetchData('egypt');
+			}
+		);
+	} else {
+		fetchData('egypt');
+	}
+}
+getLocation();
+
 async function fetchData(area) {
 	try {
 		const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=89d2e5ee2c5547a4b78164811250507&q=${area}&days=3`);
@@ -75,7 +91,13 @@ function displayNext(forecast) {
 }
 
 document.getElementById("search").addEventListener("keyup", e => {
-	fetchData(e.target.value)
+	if (e.target.value == "") {
+		fetchData('egypt');
+	} else {
+		fetchData(e.target.value)
+	}
 });
 
-fetchData('egypt');
+
+
+// fetchData('egypt');
